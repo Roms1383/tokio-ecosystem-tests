@@ -19,7 +19,7 @@
 //! comes in handy to copy bytes from a [`tokio::io::AsyncRead`] to a buffer [`tokio::io::AsyncWrite`]
 //! 
 //! [`tokio_util::io::StreamReader`]
-//! comes in handy to turn a [futures_core::stream::Stream] into a [`tokio::io::AsyncRead`]
+//! comes in handy to turn a [`futures_core::stream::Stream`](https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html) into a [`tokio::io::AsyncRead`]
 //! 
 //! [`tokio_stream::iter`]
 //! provides a convenient way to turn an [`Iterator`] into a [`tokio_stream::Stream`]
