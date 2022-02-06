@@ -2,32 +2,32 @@
 //! 
 //! ### definitions
 //! 
-//! [tokio::io::AsyncRead]
+//! [`tokio::io::AsyncRead`]
 //! represents any source that contains bytes (e.g. `&[u8]`)
 //! 
-//! [tokio::io::AsyncWrite]
+//! [`tokio::io::AsyncWrite`]
 //! represents any destination that can hold bytes (e.g. `Vec<u8>`)
 //! 
-//! [tokio_stream::StreamExt]
+//! [`tokio_stream::StreamExt`]
 //! provides `stream.next()` method to allow for iteration in a `while` loop
 //! 
-//! (complementary yet different from [futures_util::stream::StreamExt](https://docs.rs/futures-util/latest/futures_util/stream/trait.StreamExt.html))
+//! (complementary yet different from [`futures_util::stream::StreamExt`](https://docs.rs/futures-util/latest/futures_util/stream/trait.StreamExt.html))
 //! 
 //! ### utility methods & structs
 //! 
-//! [tokio::io::copy]
-//! comes in handy to copy bytes from a [tokio::io::AsyncRead] to a buffer [tokio::io::AsyncWrite]
+//! [`tokio::io::copy`]
+//! comes in handy to copy bytes from a [`tokio::io::AsyncRead`] to a buffer [`tokio::io::AsyncWrite`]
 //! 
-//! [tokio_util::io::StreamReader]
-//! comes in handy to turn a [futures_core::stream::Stream] into a [tokio::io::AsyncRead]
+//! [`tokio_util::io::StreamReader`]
+//! comes in handy to turn a [futures_core::stream::Stream] into a [`tokio::io::AsyncRead`]
 //! 
-//! [tokio_stream::iter]
-//! provides a convenient way to turn an [Iterator] into a [tokio_stream::Stream]
+//! [`tokio_stream::iter`]
+//! provides a convenient way to turn an [`Iterator`] into a [`tokio_stream::Stream`]
 //! 
 //! ### manual iteration vs utility method
 //! 
-//! directly iterating over chunks of bytes is preferable to using [tokio::io::copy]
-//! which uses an intermediate buffer, but one can look at [tokio::io::copy_buf] to achieve the same result
+//! directly iterating over chunks of bytes is preferable to using [`tokio::io::copy`]
+//! which uses an intermediate buffer, but one can look at [`tokio::io::copy_buf`] to achieve the same result
 
 #[cfg(test)]
 mod tests {
