@@ -41,16 +41,16 @@
 
 //! ```
 //! 
-//! [`Iterator`]: std::iter::Iterator
-//! [`Bytes`]: bytes::Bytes
-//! [`AsyncRead`]: tokio::io::AsyncRead
-//! [`AsyncWrite`]: tokio::io::AsyncWrite
-//! [`Stream`]: futures_core::stream::Stream
-//! [`StreamExt`]: tokio_stream::StreamExt
-//! [`futures_util::stream::StreamExt`]: futures_util::stream::StreamExt
-//! [`copy`]: tokio::io::copy
-//! [`copy_buf`]: tokio::io::copy_buf
-//! [`iter`]: tokio_stream::iter
-//! [`StreamReader`]: tokio_util::io::StreamReader
+//! [`Iterator`]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
+//! [`Bytes`]: https://docs.rs/bytes/latest/bytes/struct.Bytes.html
+//! [`AsyncRead`]: https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html
+//! [`AsyncWrite`]: https://docs.rs/tokio/latest/tokio/io/trait.AsyncWrite.html
+//! [`Stream`]: https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html
+//! [`StreamExt`]: https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html
+//! [`futures_util::stream::StreamExt`]: https://docs.rs/futures-util/latest/futures_util/stream/trait.StreamExt.html
+//! [`copy`]: https://docs.rs/tokio/latest/tokio/io/fn.copy.html
+//! [`copy_buf`]: https://docs.rs/tokio/latest/tokio/io/fn.copy_buf.html
+//! [`iter`]: https://docs.rs/tokio-stream/latest/tokio_stream/fn.iter.html
+//! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
 
 pub mod copy_or_loop;

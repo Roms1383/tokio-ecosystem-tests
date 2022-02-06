@@ -1,7 +1,7 @@
 //! illustrate correlated usages of [`copy`] and [`StreamReader`]
 //! 
-//! [`copy`]: tokio::io::copy
-//! [`StreamReader`]: tokio_util::io::StreamReader
+//! [`copy`]: https://docs.rs/tokio/latest/tokio/io/fn.copy.html
+//! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
 
 #[cfg(test)]
 mod tests {
