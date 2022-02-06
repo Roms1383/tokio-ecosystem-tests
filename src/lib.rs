@@ -23,10 +23,10 @@
 //! comes in handy to copy bytes from a [`AsyncRead`] to a buffer [`AsyncWrite`]
 //! 
 //! [`StreamReader`]
-//! comes in handy to turn a [`Stream`] into a [`AsyncRead`]
+//! comes in handy to turn a [`Stream`]::<[`Bytes`]> into a [`AsyncRead`]
 //! 
 //! [`iter`]
-//! provides a convenient way to turn an [`Iterator`] into a [`Stream`]
+//! provides a convenient way to turn an [`Iterator`] into a [`Stream`]::<[`Bytes`]>
 //! 
 //! #### manual iteration vs utility method
 //! 
@@ -42,6 +42,7 @@
 //! ```
 //! 
 //! [`Iterator`]: std::iter::Iterator
+//! [`Bytes`]: bytes::Bytes
 //! [`AsyncRead`]: tokio::io::AsyncRead
 //! [`AsyncWrite`]: tokio::io::AsyncWrite
 //! [`Stream`]: futures_core::stream::Stream
