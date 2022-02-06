@@ -48,7 +48,7 @@ jobs:
           rm -rf docs
 
           echo 'add redirection to docs'
-          echo "<meta http-equiv=\"refresh\" content=\"0; url=tokio-ecosystem-tests\">" > target/doc/index.html
+          echo "<meta http-equiv=\"refresh\" content=\"0; url=tokio_ecosystem_tests\">" > target/doc/index.html
           
           echo 'overwrite former docs'
           cp -r target/doc docs
