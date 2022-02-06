@@ -1,0 +1,59 @@
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+      - '.vsc/**'
+      - '.idea/**'
+
+name: CI
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: retrieve cached dependencies
+        uses: Swatinem/rust-cache@v1
+      - name: run tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+  doc:
+    if: "github.ref == 'refs/heads/main'"
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v2
+      - name: store short commit SHA
+        id: vars
+        run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
+      - name: setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: retrieve cached dependencies
+        uses: Swatinem/rust-cache@v1
+      - name: prepare docs
+        run: |
+          echo 'generate docs'
+          cargo doc --no-deps
+          echo 'remove former docs folder'
+          rm -rf ./docs
+          echo 'add redirection to docs'
+          echo "<meta http-equiv=\"refresh\" content=\"0; url=build_wheel\">" > target/doc/index.html
+          echo 'overwrite former docs'
+          cp -r target/doc ./docs
+      - name: publish docs to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
