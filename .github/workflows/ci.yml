@@ -57,5 +57,6 @@ jobs:
           target_branch: gh-pages
           build_dir: docs
           jekyll: false
+          commit_message: ":rocket: deploy to Github Pages (${{ steps.vars.outputs.short_sha }})"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
