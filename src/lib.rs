@@ -33,6 +33,8 @@
 //! directly iterating over chunks of bytes is preferable to using [`copy`]
 //! which uses an intermediate buffer, but one can look at [`copy_buf`] to achieve the same result
 //! 
+//! #### examples
+//! 
 //! ```
 
 #![doc = include_str!("copy_or_loop.rs")]
