@@ -1,11 +1,11 @@
 //! illustrate correlated usages of [`copy`] and [`StreamReader`]
-//! 
+//!
 //! [`copy`]: https://docs.rs/tokio/latest/tokio/io/fn.copy.html
 //! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
 
 #[cfg(test)]
 mod tests {
-    use bytes::{Bytes, BufMut};
+    use bytes::{BufMut, Bytes};
     use tokio;
     use tokio::io;
     use tokio_stream::StreamExt;
