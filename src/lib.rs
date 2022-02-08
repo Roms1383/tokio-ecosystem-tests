@@ -2,6 +2,8 @@
 //!
 //! set of tests and notes about [tokio](https://tokio.rs/tokio/tutorial).
 //!
+//!
+//!
 //! ## copy or loop
 //!
 //! #### definitions
@@ -41,6 +43,27 @@
 
 //! ```
 //!
+//!
+//!
+//! ## range
+//!
+//! #### definitions
+//!
+//! [`stream!`]
+//! returns an anonymous type implementing the [`Stream`] trait
+//!
+//! #### stream transformations
+//!
+//! create dynamic streams from input, map stream's output, chain different streams
+//!
+//! #### examples
+//!
+//! ```
+
+#![doc = include_str!("range.rs")]
+
+//! ```
+//!
 //! [`Iterator`]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
 //! [`Bytes`]: https://docs.rs/bytes/latest/bytes/struct.Bytes.html
 //! [`AsyncRead`]: https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html
@@ -52,6 +75,7 @@
 //! [`copy_buf`]: https://docs.rs/tokio/latest/tokio/io/fn.copy_buf.html
 //! [`iter`]: https://docs.rs/tokio-stream/latest/tokio_stream/fn.iter.html
 //! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
+//! [`stream!`]: https://docs.rs/async-stream/latest/async_stream/macro.stream.html
 
 pub mod copy_or_loop;
 pub mod range;

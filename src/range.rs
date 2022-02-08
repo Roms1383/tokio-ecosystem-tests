@@ -1,12 +1,17 @@
+//! illustrate usage of [`stream!`]
+//!
+//! [`stream!`]: https://docs.rs/async-stream/latest/async_stream/macro.stream.html
+
 use std::ops::RangeInclusive;
 
 use async_stream::stream;
+use tokio::io;
 use tokio_stream::Stream;
 
-pub fn from_range(range: RangeInclusive<u32>) -> impl Stream<Item = tokio::io::Result<u32>> {
+pub fn from_range(range: RangeInclusive<u32>) -> impl Stream<Item = io::Result<u32>> {
     stream! {
         for i in range {
-            yield tokio::io::Result::Ok(i); // notice here that it yields a tokio::io::Result
+            yield io::Result::Ok(i); // notice here that it yields a tokio::io::Result
         }
     }
 }
