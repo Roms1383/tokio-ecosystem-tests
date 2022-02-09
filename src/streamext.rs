@@ -1,3 +1,8 @@
+//! illustrate over documentation usage for [`tokio_stream::StreamExt`] and [`futures::stream::StreamExt`]
+//!
+//! [`tokio_stream::StreamExt`]: https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html
+//! [`futures::stream::StreamExt`]: https://docs.rs/futures/latest/futures/stream/trait.StreamExt.html
+
 #[cfg(test)]
 mod tests {
     use futures::stream::StreamExt;

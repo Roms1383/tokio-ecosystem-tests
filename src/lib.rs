@@ -78,6 +78,40 @@
 //! [`iter`]: https://docs.rs/tokio-stream/latest/tokio_stream/fn.iter.html
 //! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
 //! [`stream!`]: https://docs.rs/async-stream/latest/async_stream/macro.stream.html
+//!
+//! ## StreamExt(s)
+//!
+//! #### definitions
+//!
+//! [`tokio_stream::StreamExt`]: https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html
+//! [`futures::stream::StreamExt`]: https://docs.rs/futures/latest/futures/stream/trait.StreamExt.html
+//!
+//! #### stream transformations
+//!
+//! although differents, both `StreamExt` from `tokio` and `futures` crates can be mixed together
+//!
+//! #### examples
+//!
+//! example below slightly elaborate over the [`StreamExt`] trait example
+//!
+//! ```
+
+#![doc = include_str!("streamext.rs")]
+
+//! ```
+//!
+//! [`Iterator`]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
+//! [`Bytes`]: https://docs.rs/bytes/latest/bytes/struct.Bytes.html
+//! [`AsyncRead`]: https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html
+//! [`AsyncWrite`]: https://docs.rs/tokio/latest/tokio/io/trait.AsyncWrite.html
+//! [`Stream`]: https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html
+//! [`StreamExt`]: https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html
+//! [`futures_util::stream::StreamExt`]: https://docs.rs/futures-util/latest/futures_util/stream/trait.StreamExt.html
+//! [`copy`]: https://docs.rs/tokio/latest/tokio/io/fn.copy.html
+//! [`copy_buf`]: https://docs.rs/tokio/latest/tokio/io/fn.copy_buf.html
+//! [`iter`]: https://docs.rs/tokio-stream/latest/tokio_stream/fn.iter.html
+//! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html
+//! [`stream!`]: https://docs.rs/async-stream/latest/async_stream/macro.stream.html
 
 pub mod copy_or_loop;
 pub mod range;
