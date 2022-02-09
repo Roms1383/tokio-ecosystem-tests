@@ -17,6 +17,17 @@ async fn copy(
     Ok(writer)
 }
 
+async fn copy_buf(
+    stream: tokio_stream::Iter<std::vec::IntoIter<Result<bytes::Bytes, std::io::Error>>>,
+) -> io::Result<Vec<u8>> {
+    let mut reader = StreamReader::new(stream);
+    let mut writer: Vec<u8> = vec![];
+
+    io::copy_buf(&mut reader, &mut writer).await?;
+
+    Ok(writer)
+}
+
 async fn iterate(
     mut stream: tokio_stream::Iter<std::vec::IntoIter<Result<bytes::Bytes, std::io::Error>>>,
 ) -> io::Result<Vec<u8>> {
@@ -39,6 +50,16 @@ fn bench(c: &mut Criterion) {
                 io::Result::Ok(Bytes::from_static(&[8, 9, 10, 11])),
             ]);
             copy(stream).await
+        })
+    });
+    group.bench_function("copy_buf", move |b| {
+        b.to_async(FuturesExecutor).iter(|| async {
+            let stream = tokio_stream::iter(vec![
+                io::Result::Ok(Bytes::from_static(&[0, 1, 2, 3])),
+                io::Result::Ok(Bytes::from_static(&[4, 5, 6, 7])),
+                io::Result::Ok(Bytes::from_static(&[8, 9, 10, 11])),
+            ]);
+            copy_buf(stream).await
         })
     });
     group.bench_function("loop", move |b| {
