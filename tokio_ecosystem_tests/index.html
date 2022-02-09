@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="tokio-ecosystem-tests"><meta name="keywords" content="rust, rustlang, rust-lang, tokio_ecosystem_tests"><title>tokio_ecosystem_tests - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../ayu.css" disabled ><script id="default-settings" ></script><script src="../storage.js"></script><script src="../crates.js"></script><script defer src="../main.js"></script>
+    <noscript><link rel="stylesheet" href="../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style type="text/css">#crate-search{background-image:url("../down-arrow.svg");}</style></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../tokio_ecosystem_tests/index.html'><div class='logo-container rust-logo'><img src='../rust-logo.png' alt='logo'></div></a><h2 class="location">Crate tokio_ecosystem_tests</h2><div class="block version"><div class="narrow-helper"></div><p>Version 0.1.0</p></div><div class="sidebar-elems"><a id="all-types" href="all.html"><p>See all tokio_ecosystem_tests's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li></ul></div><div id="sidebar-vars" data-name="tokio_ecosystem_tests" data-ty="mod" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../wheel.svg"></a></div></form></nav><section id="main" class="content"><h1 class="fqn"><span class="in-band">Crate <a class="mod" href="#">tokio_ecosystem_tests</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span><span class="out-of-band"><span id="render-detail"><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span><a class="srclink" href="../src/tokio_ecosystem_tests/lib.rs.html#1-118" title="goto source code">[src]</a></span></h1><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="tokio-ecosystem-tests" class="section-header"><a href="#tokio-ecosystem-tests">tokio-ecosystem-tests</a></h2>
+<p>set of tests and notes about <a href="https://tokio.rs/tokio/tutorial">tokio</a>.</p>
+<h3 id="copy-or-loop" class="section-header"><a href="#copy-or-loop">copy or loop</a></h3><h5 id="definitions" class="section-header"><a href="#definitions">definitions</a></h5>
+<p><a href="https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html"><code>AsyncRead</code></a>
+represents any source that contains bytes (e.g. <code>&amp;[u8]</code>)</p>
+<p><a href="https://docs.rs/tokio/latest/tokio/io/trait.AsyncWrite.html"><code>AsyncWrite</code></a>
+represents any destination that can hold bytes (e.g. <code>Vec&lt;u8&gt;</code>)</p>
+<p><a href="https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html"><code>StreamExt</code></a>
+provides <code>stream.next()</code> method to allow for iteration in a <code>while</code> loop</p>
+<p>(complementary yet different from <a href="https://docs.rs/futures-util/latest/futures_util/stream/trait.StreamExt.html"><code>futures_util::stream::StreamExt</code></a>)</p>
+<h5 id="utility-methods--structs" class="section-header"><a href="#utility-methods--structs">utility methods &amp; structs</a></h5>
+<p><a href="https://docs.rs/tokio/latest/tokio/io/fn.copy.html"><code>copy</code></a>
+comes in handy to copy bytes from a <a href="https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html"><code>AsyncRead</code></a> to a buffer <a href="https://docs.rs/tokio/latest/tokio/io/trait.AsyncWrite.html"><code>AsyncWrite</code></a></p>
+<p><a href="https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html"><code>StreamReader</code></a>
+comes in handy to turn a <a href="https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html"><code>Stream</code></a>::&lt;<a href="https://docs.rs/bytes/latest/bytes/struct.Bytes.html"><code>Bytes</code></a>&gt; into a <a href="https://docs.rs/tokio/latest/tokio/io/trait.AsyncRead.html"><code>AsyncRead</code></a></p>
+<p><a href="https://docs.rs/tokio-stream/latest/tokio_stream/fn.iter.html"><code>iter</code></a>
+provides a convenient way to turn an <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html"><code>Iterator</code></a> into a <a href="https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html"><code>Stream</code></a>::&lt;<a href="https://docs.rs/bytes/latest/bytes/struct.Bytes.html"><code>Bytes</code></a>&gt;</p>
+<h5 id="manual-iteration-vs-utility-method" class="section-header"><a href="#manual-iteration-vs-utility-method">manual iteration vs utility method</a></h5>
+<p>directly iterating over chunks of bytes is preferable to using <a href="https://docs.rs/tokio/latest/tokio/io/fn.copy.html"><code>copy</code></a>
+which uses an intermediate buffer, but one can look at <a href="https://docs.rs/tokio/latest/tokio/io/fn.copy_buf.html"><code>copy_buf</code></a> to achieve the same result</p>
+<p>see <a href="../benches/copy_or_loop/report/index.html">benchmark</a></p>
+<h5 id="examples" class="section-header"><a href="#examples">examples</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">//! illustrate correlated usages of [`copy`] and [`StreamReader`]</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! [`copy`]: https://docs.rs/tokio/latest/tokio/io/fn.copy.html</span>
+<span class="doccomment">//! [`StreamReader`]: https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html</span>
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident">bytes</span>::{<span class="ident">BufMut</span>, <span class="ident">Bytes</span>};
+    <span class="kw">use</span> <span class="ident">tokio</span>;
+    <span class="kw">use</span> <span class="ident">tokio::io</span>;
+    <span class="kw">use</span> <span class="ident">tokio_stream::StreamExt</span>;
+    <span class="kw">use</span> <span class="ident">tokio_util::io::StreamReader</span>;
+
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">tokio_doc_fn_copy</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="string">b&quot;hello&quot;</span>;
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+
+        <span class="ident">io::copy</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">writer</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;hello&quot;</span>[..], <span class="kw-2">&amp;</span><span class="ident">writer</span>[..]);
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">struct_StreamReader</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])),
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])),
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>])),
+        ]);
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">StreamReader::new</span>(<span class="ident">stream</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writer</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+
+        <span class="comment">// note that the reader is consumed after copy (and left empty)</span>
+        <span class="ident">io::copy</span>(<span class="kw-2">&amp;mut</span> <span class="ident">reader</span>, <span class="kw-2">&amp;mut</span> <span class="ident">writer</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+
+        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>], <span class="kw-2">&amp;</span><span class="ident">writer</span>[..]);
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">loop_over_chunks</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])),
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>])),
+            <span class="ident">io::Result::Ok</span>(<span class="ident">Bytes::from_static</span>(<span class="kw-2">&amp;</span>[<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>])),
+        ]);
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="ident">::new</span>();
+        <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">io::Result::Ok</span>(<span class="ident">bytes</span>)) <span class="op">=</span> <span class="ident">stream</span>.<span class="ident">next</span>().<span class="kw">await</span> {
+            <span class="ident">buf</span>.<span class="ident">put</span>(<span class="ident">bytes</span>);
+        }
+
+        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>], <span class="kw-2">&amp;</span><span class="ident">buf</span>[..]);
+        <span class="prelude-val">Ok</span>(())
+    }
+}</code></pre></div>
+<h3 id="range" class="section-header"><a href="#range">range</a></h3><h5 id="definitions-1" class="section-header"><a href="#definitions-1">definitions</a></h5>
+<p><a href="https://docs.rs/async-stream/latest/async_stream/macro.stream.html"><code>stream!</code></a>
+returns an anonymous type implementing the <a href="https://docs.rs/futures-core/latest/futures_core/stream/trait.Stream.html"><code>Stream</code></a> trait</p>
+<h5 id="stream-transformations" class="section-header"><a href="#stream-transformations">stream transformations</a></h5>
+<p>create dynamic streams from input, map stream’s output, chain different streams</p>
+<h5 id="examples-1" class="section-header"><a href="#examples-1">examples</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">//! illustrate usage of [`stream!`]</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! [`stream!`]: https://docs.rs/async-stream/latest/async_stream/macro.stream.html</span>
+
+<span class="kw">use</span> <span class="ident">std::ops::RangeInclusive</span>;
+
+<span class="kw">use</span> <span class="ident">async_stream::stream</span>;
+<span class="kw">use</span> <span class="ident">tokio::io</span>;
+<span class="kw">use</span> <span class="ident">tokio_stream::Stream</span>;
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_range</span>(<span class="ident">range</span>: <span class="ident">RangeInclusive</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>) -&gt; <span class="kw">impl</span> <span class="ident">Stream</span><span class="op">&lt;</span><span class="ident">Item</span> <span class="op">=</span> <span class="ident">io::Result</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="macro">stream!</span> {
+        <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="ident">range</span> {
+            <span class="kw">yield</span> <span class="ident">io::Result::Ok</span>(<span class="ident">i</span>); <span class="comment">// notice here that it yields a tokio::io::Result</span>
+        }
+    }
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::from_range</span>;
+    <span class="kw">use</span> <span class="ident">async_stream::stream</span>;
+    <span class="kw">use</span> <span class="ident">futures::pin_mut</span>;
+    <span class="kw">use</span> <span class="ident">tokio::io</span>;
+    <span class="kw">use</span> <span class="ident">tokio_stream::StreamExt</span>;
+
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">tokio_doc_macro_stream</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">first</span> <span class="op">=</span> <span class="macro">stream!</span> {
+            <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..<span class="op">=</span><span class="number">3</span> {
+                <span class="kw">yield</span> <span class="ident">i</span>; <span class="comment">// notice here that it yields the number directly</span>
+            }
+        };
+        <span class="kw">let</span> <span class="ident">second</span> <span class="op">=</span> <span class="ident">from_range</span>(<span class="number">4</span>..<span class="op">=</span><span class="number">7</span>);
+        <span class="kw">let</span> <span class="ident">third</span> <span class="op">=</span> <span class="ident">from_range</span>(<span class="number">8</span>..<span class="op">=</span><span class="number">11</span>);
+
+        <span class="macro">pin_mut!</span>(<span class="ident">first</span>);
+        <span class="macro">pin_mut!</span>(<span class="ident">second</span>);
+        <span class="macro">pin_mut!</span>(<span class="ident">third</span>);
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">stream</span> <span class="op">=</span> <span class="ident">first</span>
+            <span class="comment">// map first digits into tokio::io::Result</span>
+            .<span class="ident">map</span>(<span class="ident">io::Result::Ok</span>)
+            <span class="comment">// subsequent streams already yield tokio::io::Result</span>
+            .<span class="ident">chain</span>(<span class="ident">second</span>)
+            .<span class="ident">chain</span>(<span class="ident">third</span>);
+
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="ident">::new</span>();
+        <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">io::Result::Ok</span>(<span class="ident">item</span>)) <span class="op">=</span> <span class="ident">stream</span>.<span class="ident">next</span>().<span class="kw">await</span> {
+            <span class="ident">buf</span>.<span class="ident">push</span>(<span class="ident">item</span>);
+        }
+
+        <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>], <span class="kw-2">&amp;</span><span class="ident">buf</span>[..]);
+        <span class="prelude-val">Ok</span>(())
+    }
+}</code></pre></div>
+<h3 id="streamexts" class="section-header"><a href="#streamexts">StreamExt(s)</a></h3><h5 id="definitions-2" class="section-header"><a href="#definitions-2">definitions</a></h5><h5 id="stream-transformations-1" class="section-header"><a href="#stream-transformations-1">stream transformations</a></h5>
+<p>although differents, both <code>StreamExt</code> from <code>tokio</code> and <code>futures</code> crates can be mixed together</p>
+<h5 id="examples-2" class="section-header"><a href="#examples-2">examples</a></h5>
+<p>example below slightly elaborate over the <a href="https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html"><code>StreamExt</code></a> trait example</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="doccomment">//! illustrate over documentation usage for [`tokio_stream::StreamExt`] and [`futures::stream::StreamExt`]</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! [`tokio_stream::StreamExt`]: https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html</span>
+<span class="doccomment">//! [`futures::stream::StreamExt`]: https://docs.rs/futures/latest/futures/stream/trait.StreamExt.html</span>
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">tests</span> {
+    <span class="kw">use</span> <span class="ident">futures::stream::StreamExt</span>;
+    <span class="kw">use</span> <span class="ident">tokio</span>;
+    <span class="kw">use</span> <span class="ident">tokio::io</span>;
+
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">tokio_doc_trait_StreamExt</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>]);
+        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]);
+
+        <span class="kw">let</span> <span class="ident">merged</span> <span class="op">=</span> <span class="ident">tokio_stream::StreamExt::merge</span>(<span class="ident">a</span>, <span class="ident">b</span>);
+        <span class="kw">let</span> <span class="ident">output</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">merged</span>.<span class="ident">collect</span>().<span class="kw">await</span>;
+
+        <span class="macro">assert_eq!</span>(<span class="ident">output</span>, <span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]);
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="attribute">#[<span class="ident">tokio::test</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">mixing_both_methods</span>() -&gt; <span class="ident">io::Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>]);
+        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">tokio_stream::iter</span>(<span class="macro">vec!</span>[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>]);
+
+        <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">tokio_stream::StreamExt::merge</span>(<span class="ident">a</span>, <span class="ident">b</span>);
+        <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">output</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">futures::future::ready</span>(<span class="ident">x</span> <span class="op">%</span> <span class="number">3</span> <span class="op">==</span> <span class="number">0</span>));
+        <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">tokio_stream::StreamExt::filter</span>(<span class="ident">output</span>, <span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">%</span> <span class="number">2</span> <span class="op">==</span> <span class="number">0</span>);
+        <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="ident">output</span>.<span class="ident">filter</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">futures::future::ready</span>(<span class="ident">x</span> <span class="op">%</span> <span class="number">4</span> <span class="op">==</span> <span class="number">0</span>));
+
+        <span class="kw">let</span> <span class="ident">output</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">output</span>.<span class="ident">collect</span>().<span class="kw">await</span>;
+        <span class="macro">assert_eq!</span>(<span class="ident">output</span>, <span class="macro">vec!</span>[<span class="number">12</span>]);
+        <span class="prelude-val">Ok</span>(())
+    }
+}</code></pre></div>
+</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="mod" href="copy_or_loop/index.html" title="tokio_ecosystem_tests::copy_or_loop mod">copy_or_loop</a></div><div class="item-right docblock-short"><p>illustrate correlated usages of <a href="https://docs.rs/tokio/latest/tokio/io/fn.copy.html"><code>copy</code></a> and <a href="https://docs.rs/tokio-util/latest/tokio_util/io/struct.StreamReader.html"><code>StreamReader</code></a></p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="range/index.html" title="tokio_ecosystem_tests::range mod">range</a></div><div class="item-right docblock-short"><p>illustrate usage of <a href="https://docs.rs/async-stream/latest/async_stream/macro.stream.html"><code>stream!</code></a></p>
+</div></div><div class="item-row"><div class="item-left module-item"><a class="mod" href="streamext/index.html" title="tokio_ecosystem_tests::streamext mod">streamext</a></div><div class="item-right docblock-short"><p>illustrate over documentation usage for <a href="https://docs.rs/tokio-stream/latest/tokio_stream/trait.StreamExt.html"><code>tokio_stream::StreamExt</code></a> and <a href="https://docs.rs/futures/latest/futures/stream/trait.StreamExt.html"><code>futures::stream::StreamExt</code></a></p>
+</div></div></div></section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../" data-current-crate="tokio_ecosystem_tests" data-search-index-js="../search-index.js" data-search-js="../search.js"></div>
+</body></html>
