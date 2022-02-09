@@ -33,8 +33,8 @@ async fn iterate(
 ) -> io::Result<Vec<u8>> {
     let mut buf = Vec::<u8>::new();
 
-    while let Some(io::Result::Ok(bytes)) = stream.next().await {
-        buf.put(bytes);
+    while let Some(output) = stream.next().await {
+        buf.put(output?);
     }
 
     Ok(buf)
