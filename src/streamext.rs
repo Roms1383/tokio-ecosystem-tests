@@ -16,13 +16,12 @@ mod tests {
         let b = tokio_stream::iter(vec![2, 4, 6]);
 
         let merged = tokio_stream::StreamExt::merge(a, b);
-        let first: Vec<_> = merged.collect().await;
+        let output: Vec<_> = merged.collect().await;
 
-        assert_eq!(first, vec![1, 2, 3, 4, 5, 6]);
+        assert_eq!(output, vec![1, 2, 3, 4, 5, 6]);
         Ok(())
     }
 
-    #[allow(non_snake_case)]
     #[tokio::test]
     async fn mixing_both_methods() -> io::Result<()> {
         let a = tokio_stream::iter(vec![1, 3, 5, 7, 9, 11]);
