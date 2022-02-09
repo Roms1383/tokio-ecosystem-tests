@@ -44,6 +44,9 @@ jobs:
           echo 'generate docs'
           cargo doc --no-deps
 
+          echo 'generate benchmarks'
+          cargo bench --quiet
+
           echo 'remove former docs folder'
           rm -rf docs
 
@@ -52,6 +55,7 @@ jobs:
           
           echo 'overwrite former docs'
           cp -r target/doc docs
+          cp -r target/criterion docs/benches
           cp .nojekyll docs
       - name: publish docs to GitHub Pages
         if: success()
