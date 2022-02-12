@@ -3,7 +3,7 @@ mod tests {
     use std::{env::current_dir, time::Duration};
 
     use tokio::{
-        io,
+        io, join,
         sync::broadcast,
         time::{sleep, Instant},
     };
@@ -72,6 +72,7 @@ mod tests {
     }
 
     async fn a_long_task(emitter: broadcast::Sender<u32>) -> io::Result<()> {
+        sleep(Duration::from_millis(50)).await;
         let _ = emitter.send(10);
         sleep(Duration::from_millis(100)).await;
         let _ = emitter.send(20);
@@ -82,13 +83,21 @@ mod tests {
         Ok(())
     }
 
+    async fn some_task(emitter: broadcast::Sender<u32>) -> io::Result<()> {
+        sleep(Duration::from_millis(30)).await;
+        let _ = emitter.send(101);
+        Ok(())
+    }
+
     #[tokio::test]
     async fn broadcast_progress() -> io::Result<()> {
         let (tx, mut rx1) = broadcast::channel(16);
         let mut rx2 = tx.subscribe();
+        let tx2 = tx.clone();
         let starts = Instant::now();
 
         tokio::spawn(async move {
+            assert_eq!(rx1.recv().await.unwrap(), 101);
             assert_eq!(rx1.recv().await.unwrap(), 10);
             assert_eq!(rx1.recv().await.unwrap(), 20);
             assert!(starts.elapsed().as_millis() > 100);
@@ -98,14 +107,15 @@ mod tests {
         });
 
         tokio::spawn(async move {
+            sleep(Duration::from_millis(200)).await;
+            assert_eq!(rx2.recv().await.unwrap(), 101);
             assert_eq!(rx2.recv().await.unwrap(), 10);
-            assert_eq!(rx2.recv().await.unwrap(), 20);
-            assert!(starts.elapsed().as_millis() > 100);
+            assert_eq!(rx2.recv().await.unwrap(), 280);
             assert_eq!(rx2.recv().await.unwrap(), 50);
-            assert!(starts.elapsed().as_millis() > 300);
             assert_eq!(rx2.recv().await.unwrap(), 100);
         });
-        a_long_task(tx).await?;
+
+        let _ = join!(a_long_task(tx), some_task(tx2));
 
         Ok(())
     }
