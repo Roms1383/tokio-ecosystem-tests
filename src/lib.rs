@@ -116,3 +116,4 @@
 pub mod copy_or_loop;
 pub mod range;
 pub mod streamext;
+pub mod wrapper;
